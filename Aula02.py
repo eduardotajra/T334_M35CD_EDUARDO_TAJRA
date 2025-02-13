@@ -48,19 +48,20 @@ recv_1, recv_2, recv_d1, recv_d2 = period(data_recv)
 sent_1, sent_2, sent_d1, sent_d2 = period(data_sent)
 
 data = [
-    ('CPU', cpu_1, cpu_2, 'Data', cpu_d1, cpu_d2),
-    ('Memoria', mem_1, mem_2, 'Data', mem_d1, mem_d2),
-    ('Disco', disk_1, disk_2 , 'Data', disk_d1, disk_d2),
-    ('Recebimento de dados', recv_1, recv_2 , 'Data', recv_d1, recv_d2),
-    ('Envio de dados', sent_1, sent_2 , 'Data', sent_d1, sent_d2)
+    ('', 'Pre 5 segundos', 'Po"s 5 segundos', 'Data pre 5 segundos', 'Data pos 5 segundos'),
+    ('CPU', cpu_1, cpu_2, cpu_d1, cpu_d2),
+    ('Memoria', mem_1, mem_2, mem_d1, mem_d2),
+    ('Disco', disk_1, disk_2 , disk_d1, disk_d2),
+    ('Recebimento de dados', recv_1, recv_2 , recv_d1, recv_d2),
+    ('Envio de dados', sent_1, sent_2 , sent_d1, sent_d2)
 ]
 
-print('-----------------------------------------------------------------------------')
+print('--------------------------------------------------------------------------------------------------------------------------------')
 print('Uso da CPU: ',cpu_1, '% | Uso da CPU apos 5 segundos: ',cpu_2, '%')
 print('Uso da MEM: ',mem_1, '% | Uso da MEM apos 5 segundos: ',mem_2,'%')
-print('Uso do DISK: ',disk_1, ' |% Uso do DISK apos 5 segundos: ',disk_2, '%')
+print('Uso do DISK: ',disk_1, '% | Uso do DISK apos 5 segundos: ',disk_2, '%')
 print('Recebimento de dados: ',recv_1, 'MB | Recebimento de dados apos 5 segundos: ',recv_1, 'MB')
-print('Envio de dados: ',sent_1, 'MB | Envio de dados apos 5 segundos: ',sent_1, 'MB')
+print('Envio de dados: ',sent_1, 'MB | Envio de dados apos 5 segundos: ',sent_1, 'MB \n')
 
 if (cpu_1 or cpu_2)> 70:
     print('ALERTA [MEDIO] - CPU está com uso alto')
@@ -68,9 +69,9 @@ if (cpu_1 or cpu_2)> 70:
 if (mem_1 or mem_2)> 85:
     print('ALERTA [CRITICO] - Memoria proxima do limite de uso!')
 
-print(tabulate(data, tablefmt="grid"))
+print(tabulate(data, headers="firstrow", tablefmt="grid"))
 
-with open('Desafio.csv', mode = 'w', newline= '') as arquivo_csv:
+with open('CSV/Desafio.csv', mode = 'w', newline= '') as arquivo_csv:
     escritor = csv.writer(arquivo_csv)
     escritor.writerows(data)
 
